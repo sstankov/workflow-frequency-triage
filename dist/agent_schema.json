@@ -1,0 +1,71 @@
+{
+  "type": "object",
+  "properties": {
+    "reviews": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "flow_id": {
+            "type": "string"
+          },
+          "final_cadence": {
+            "type": "string"
+          },
+          "interval_minutes": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "agent_outcome": {
+            "type": "string",
+            "enum": [
+              "MIGRATE",
+              "TO ENGINEER",
+              "UNKNOWN",
+              "DO NOT MIGRATE"
+            ]
+          },
+          "outcome_explanation": {
+            "type": "string"
+          },
+          "comparison_explanation": {
+            "type": "string"
+          },
+          "next_action": {
+            "type": "string"
+          },
+          "evidence_rows": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "feedback_sections": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": [
+          "flow_id",
+          "final_cadence",
+          "interval_minutes",
+          "agent_outcome",
+          "outcome_explanation",
+          "comparison_explanation",
+          "next_action",
+          "evidence_rows",
+          "feedback_sections"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "reviews"
+  ],
+  "additionalProperties": false
+}

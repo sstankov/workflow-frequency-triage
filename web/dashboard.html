@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Flowline · Migration review</title>
+<style>
+:root{--bg:#f3f5f4;--ink:#172c28;--muted:#63746f;--line:#dce4df;--green:#166a50;--soft:#e4f3eb;--orange:#a35420;--purple:#6d5687}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,select,textarea{font:inherit}button,a,input,select,textarea{outline-offset:4px}button{cursor:pointer}.top{background:#153e32;color:#fff;padding:17px 32px;display:flex;align-items:center;justify-content:space-between}.brand{font-weight:750;font-size:20px;letter-spacing:-.5px}.brand span{font-size:12px;font-weight:450;color:#b8d3c6;margin-left:16px;letter-spacing:.4px}main{max-width:1500px;margin:0 auto;padding:32px}h1{font-size:34px;line-height:1.15;letter-spacing:-1.1px;margin:8px 0 12px}h2{font-size:18px;margin:0}.eyebrow{color:var(--green);font-size:11px;font-weight:750;letter-spacing:1.6px;text-transform:uppercase}.muted{color:var(--muted)}.hero{display:flex;justify-content:space-between;align-items:center;gap:24px;margin-bottom:26px}.downloads{display:flex;gap:8px;flex-wrap:wrap}a.btn,button.btn{display:inline-block;text-decoration:none;border:1px solid #b7c9bd;background:white;color:var(--ink);padding:10px 14px;border-radius:7px;font-weight:600}button.primary{background:var(--green);color:white;border-color:var(--green)}.pipeline{display:flex;background:white;border:1px solid var(--line);border-radius:10px;padding:16px 20px;gap:16px;align-items:center;margin-bottom:22px}.step{flex:1}.step b{display:block}.step small{color:var(--muted)}.arrow{color:#91a69a}.runstate{padding:6px 10px;border-radius:5px;background:var(--soft);font-size:12px;font-weight:650}.stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin-bottom:22px}.card{background:white;border:1px solid var(--line);border-radius:10px;padding:20px;text-align:left;color:inherit}.card strong{display:block;font-size:32px;margin-top:6px;font-weight:650;line-height:1.2}.card .label{font-size:11px;letter-spacing:1px;font-weight:700}.card.active{box-shadow:inset 0 0 0 2px var(--green)}.card small{color:var(--muted)}.toolbar{display:flex;gap:12px;align-items:center;padding:18px 20px;border-bottom:1px solid var(--line);flex-wrap:wrap}.toolbar input[type=search]{flex:1;min-width:220px}.toolbar input,.toolbar select{background:#f8faf9;border:1px solid var(--line);padding:9px 12px;border-radius:6px}.panel{border:1px solid var(--line);border-radius:10px;background:#fff;overflow:hidden}.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:13px}th{text-align:left;color:var(--muted);font-size:11px;letter-spacing:.7px;text-transform:uppercase;background:#f8faf9;padding:13px 20px;border-bottom:1px solid var(--line);white-space:nowrap}td{padding:16px 20px;border-bottom:1px solid #edf0ee;vertical-align:top}td:first-child{min-width:235px}.flowbtn{background:none;border:0;padding:0;text-align:left;color:var(--ink);font-weight:650;font-size:12px;cursor:pointer}.flowbtn:hover{text-decoration:underline}td small{display:block;color:var(--muted);margin-top:4px}.badge{display:inline-block;padding:4px 8px;border-radius:5px;font-size:10px;font-weight:750;letter-spacing:.3px;white-space:nowrap}.migrate{color:#126247;background:#e5f4eb}.engineer{color:#9c4d18;background:#fff0dd}.unknown{color:#68548a;background:#f0eafa}.exclude{color:#606964;background:#e9edea}.changed{font-size:10px;color:var(--orange);font-weight:650;margin-top:5px}.explanation{min-width:290px;max-width:440px;line-height:1.55}.footer{display:flex;justify-content:space-between;padding:14px 20px;color:var(--muted);font-size:12px}.notice{padding:12px 16px;background:#fff1d9;color:#784a11;border-radius:6px;margin-bottom:18px}.hidden{display:none!important}.overlay{position:fixed;inset:0;background:#112e285c;z-index:10;display:flex;justify-content:flex-end}.drawer{width:min(950px,100%);height:100%;overflow:auto;background:white;padding:28px;box-shadow:-10px 0 50px #16352b33}.drawer h2{font-size:22px;word-break:break-all}.drawer header{display:flex;gap:20px;justify-content:space-between;align-items:start}.close{background:#eef3ef;border:0;border-radius:50%;width:32px;height:32px;font-size:20px;flex:none}.detailgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}.detailbox{border:1px solid var(--line);padding:16px;border-radius:8px}.detailbox h3{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin:0 0 10px}.detailbox p{margin:12px 0 0}.section{margin:24px 0}.section h3{font-size:14px;margin:0 0 8px}.section p{margin:6px 0}.flag{font-size:11px;border:1px solid var(--line);padding:4px 7px;display:inline-block;border-radius:4px;margin:4px 4px 0 0}.chart{height:90px;display:flex;align-items:end;gap:2px;border-bottom:1px solid var(--line);margin-top:10px}.bar{flex:1;background:#5d937c;min-width:2px}.dates{display:flex;justify-content:space-between;color:var(--muted);font-size:11px}.evidence{font-size:11px;max-height:260px;overflow:auto;border:1px solid var(--line);border-radius:5px}.evidence th,.evidence td{padding:8px;min-width:0!important}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}label.field{display:block;font-size:12px;color:var(--muted)}.field input,.field select,.field textarea{display:block;width:100%;margin-top:4px;padding:8px;border:1px solid var(--line);border-radius:5px;background:white;color:var(--ink)}textarea{min-height:80px}.full{grid-column:1/-1}#save-message{color:var(--green);font-size:12px}.empty{text-align:center;padding:50px;color:var(--muted)}@media(max-width:800px){main{padding:20px 14px}.top{padding:16px}.hero{display:block}.downloads{margin-top:18px}.stats{grid-template-columns:repeat(2,1fr)}.pipeline{align-items:start;gap:10px;font-size:12px}.runstate{display:none}h1{font-size:28px}.detailgrid{grid-template-columns:1fr}.drawer{padding:20px}.brand span{display:none}}
+.status-succeeded{color:#126247;background:#e5f4eb}.status-failed{color:#a52b36;background:#fce8eb}.status-stopped{color:#935510;background:#fff0d9}.status-aborted{color:#6d498e;background:#f1e7fa}.status-other{color:#59665f;background:#edf0ee}.overlap-yes{color:#a52b36;background:#fce8eb}.overlap-no{color:#126247;background:#e5f4eb}.evidence{max-height:340px}.evidence table{min-width:720px}.evidence th{position:sticky;top:0;z-index:1}.evidence .timestamp{white-space:nowrap;font-variant-numeric:tabular-nums}.evidence .number{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}.evidence .negative{color:#a52b36;font-weight:650}.attempt-note{font-size:12px;color:var(--muted);margin:8px 0!important}
+.user-override{color:#2456a3;background:#e9f0ff;border:1px solid #c8d9fa}.final-badges{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.activity-chart{height:154px;display:flex;gap:2px;align-items:stretch;border-bottom:1px solid var(--line);margin-top:12px}.activity-day{flex:1;min-width:0;display:flex;flex-direction:column-reverse;justify-content:flex-start;gap:1px;position:relative}.activity-day.empty-day{border-bottom:2px solid #dce4df}.run-mark{width:100%;padding:0;border:0;border-radius:1px;flex:none;min-height:1px;cursor:pointer}.run-mark:hover,.run-mark:focus-visible{outline:2px solid #172c28;outline-offset:1px;z-index:2}.run-succeeded{background:#5d937c}.run-failed{background:#c44c57}.run-stopped{background:#d99735}.run-aborted{background:#9061b4}.run-other{background:#85918b}.activity-legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--muted);margin-top:10px}.activity-key{display:inline-flex;align-items:center;gap:5px}.activity-key i{display:inline-block;width:9px;height:9px;border-radius:2px}.run-tooltip{position:fixed;z-index:30;width:290px;max-width:calc(100vw - 24px);padding:14px;background:white;color:var(--ink);border:1px solid #c5d3cb;border-radius:8px;box-shadow:0 8px 28px #173b2c33;pointer-events:none;font-size:12px}.run-tooltip .tooltip-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}.run-tooltip dl{display:grid;grid-template-columns:65px 1fr;gap:5px;margin:0}.run-tooltip dt{color:var(--muted)}.run-tooltip dd{margin:0;font-variant-numeric:tabular-nums}.activity-caption{font-size:11px;color:var(--muted)}
+.drawer header>div:first-child{min-width:0}.drawer-actions{display:flex;gap:8px;flex:none}.close{display:inline-flex;align-items:center;justify-content:center;color:var(--ink)}.close:hover:not(:disabled){background:#dce9e0}.close:disabled{opacity:.35;cursor:default}
+/* Review the decision first, then inspect the observed runs. */
+.drawer{padding:0 28px 28px;scroll-padding-top:150px}
+.drawer>header{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid var(--line);padding:20px 0 14px;flex-wrap:wrap;gap:12px}
+.drawer h2{font-size:20px;overflow-wrap:anywhere;word-break:normal}.drawer-actions{align-items:center}.close{width:40px;height:40px}.flow-position{font-size:12px;color:var(--muted);white-space:nowrap}
+.detail-nav{width:100%;display:flex;gap:8px;flex-wrap:wrap}.detail-nav button{border:1px solid var(--line);background:#f8faf9;border-radius:6px;padding:6px 10px;color:var(--ink);font-size:12px}.detail-nav button:last-child{margin-left:auto}
+.decision-summary{margin-top:20px;padding:20px;border:1px solid #bfd4c7;border-left:4px solid var(--green);border-radius:8px;background:#f8fbf9}.decision-summary.engineer{border-left-color:var(--orange)}.decision-summary.unknown{border-left-color:var(--purple)}.decision-summary.exclude{border-left-color:var(--muted)}
+.decision-summary{color:var(--ink)}.decision-top{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}.decision-source{font-size:12px;color:var(--muted)}.decision-cadence{font-size:20px;line-height:1.4;margin:12px 0}.decision-summary h3{font-size:12px;margin:16px 0 4px;color:var(--muted)}.decision-summary p{margin:4px 0}.decision-guide{font-size:12px;color:var(--muted)}.next-action{margin-top:16px;padding-top:12px;border-top:1px solid var(--line)}
+.observation-summary{display:flex;flex-wrap:wrap;gap:10px 24px;margin:18px 0;font-size:12px;color:var(--muted)}.observation-summary b{color:var(--ink)}
+.section-heading{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}.section-heading select{padding:6px;border:1px solid var(--line);border-radius:5px;background:white;color:var(--ink)}.section-heading label{font-size:12px;color:var(--muted)}
+.evidence{max-height:420px;overscroll-behavior:contain}.evidence table{font-size:12px}.evidence:focus-visible{outline:2px solid var(--green)}.cited-row td:first-child{border-left:3px solid #5d937c}.cited-label{display:block;color:var(--green);font-size:10px}.attempt-note{line-height:1.5}
+.feedback-input{margin-top:14px;font-size:12px}.feedback-input summary,.analysis-section>summary,.correction-section>summary{cursor:pointer;font-weight:650}.feedback-input blockquote{margin:8px 0;padding-left:12px;border-left:2px solid var(--line);white-space:pre-wrap}.feedback-input article{margin-top:12px}.feedback-input h4{margin:0}
+.analysis-section,.correction-section{border-top:1px solid var(--line);padding-top:18px}.analysis-section>summary,.correction-section>summary{font-size:14px}.analysis-section .detailgrid{margin-top:16px}.form-help{font-size:12px;color:var(--muted)}#save-message.error{color:#a52b36}button:disabled{cursor:default;opacity:.55}.btn:hover:not(:disabled){filter:brightness(.97)}
+#count{align-self:center}.reset-filters{border:0;background:none;color:var(--green);text-decoration:underline;padding:4px}.toolbar input[type=search]{min-width:180px}.tablewrap:focus-visible{outline:2px solid var(--green);outline-offset:-3px}.flowbtn{font-size:13px;overflow-wrap:anywhere}.runstate.incomplete{background:#fff0dd;color:#784a11}.pipeline .step:last-of-type{flex:1.2}.changed.same{color:var(--muted)}
+@media(max-width:650px){.downloads .btn{font-size:12px;padding:9px 10px}.stats{grid-template-columns:repeat(3,minmax(0,1fr))}.card .label{font-size:10px;letter-spacing:.3px}.pipeline .step:not(:last-of-type){display:none}.top{gap:16px}.top>span{font-size:11px!important}.hero{margin-bottom:18px}h1{font-size:27px}.pipeline{flex-wrap:wrap}.pipeline .step{min-width:120px}.pipeline .runstate{display:block}.pipeline .arrow{display:none}.stats{gap:8px}.card{padding:14px}.card strong{font-size:26px}.toolbar{padding:14px}.toolbar input[type=search]{width:100%;flex-basis:100%;min-width:0}.toolbar select{max-width:100%}.results-table thead{display:none}.results-table,.results-table tbody,.results-table tr,.results-table td{display:block}.results-table tr{padding:14px;border-bottom:1px solid var(--line)}.results-table td{padding:5px 0;min-width:0;border:0;max-width:none}.results-table td[data-label]::before{content:attr(data-label);display:block;font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);margin-bottom:4px}.results-table .flowbtn{font-size:14px}.drawer{padding:0 16px 24px}.drawer>header{padding-top:16px}.drawer header>div:first-child{flex:1;min-width:150px}.drawer h2{font-size:18px}.drawer-actions{gap:4px}.flow-position{display:none}.detail-nav{gap:6px}.detail-nav button:last-child{margin-left:0}.decision-summary{padding:16px}.decision-cadence{font-size:18px}.formgrid{grid-template-columns:1fr}.footer{gap:14px}.activity-caption{font-size:12px}}
+/* Corrections are readable review records, with a distinct active state. */
+:root{--blue:#345d92;--blue-soft:#f0f5fc;--red:#a23745}
+.panel{box-shadow:0 3px 14px #173b2c05}.results-table tbody tr:hover{background:#fafcfb}.badge{font-size:11px;letter-spacing:.2px}.drawer>header{box-shadow:0 8px 12px -12px #153e3255}.detail-nav button:hover{background:#eaf2ed;border-color:#b9cfc1}.detail-nav button:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--green)}
+.correction-section{padding:0;border:1px solid var(--line);border-radius:12px;background:#fafcfb;overflow:hidden}.correction-section>summary{padding:18px 20px;background:white;font-size:15px}.correction-section[open]>summary{border-bottom:1px solid var(--line)}.section-count{font-size:11px;font-weight:500;color:var(--muted);margin-left:8px}.correction-body{padding:20px}.correction-body h3{font-size:16px;margin:0 0 6px}.correction-body>.form-help{margin:0 0 18px}.correction-history{display:grid;gap:12px;margin:0 0 24px}.correction-card{border:1px solid var(--line);background:white;border-radius:10px;padding:18px}.correction-card.is-active{border-color:#b9cde8;box-shadow:inset 3px 0 var(--blue)}.correction-card.is-removed{background:#f6f8f7}.correction-card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.correction-card-head .badges{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.history-state{font-size:11px;font-weight:650;color:var(--muted)}.is-active .history-state{color:var(--blue);background:var(--blue-soft);padding:3px 7px;border-radius:20px}.history-date{color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums}.history-author{display:flex;gap:8px;align-items:center;font-size:12px;color:var(--muted);margin:14px 0 10px}.author-avatar{width:26px;height:26px;background:#edf2ef;color:#486258;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex:none}.correction-card h4{font-size:15px;margin:0 0 6px;line-height:1.4;color:var(--ink)}.correction-reason{font-size:13px;line-height:1.65;overflow-wrap:anywhere;white-space:pre-wrap}.correction-card-footer{border-top:1px solid #edf0ee;margin-top:14px;padding-top:12px;display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap}.correction-card-footer small{color:var(--muted);font-size:11px;max-width:70%}.remove-trigger{border:0;background:none;color:var(--red);padding:5px 0;font-size:12px;font-weight:600}.remove-trigger:hover{text-decoration:underline}.removal-form{margin-top:14px;padding:16px;background:#fff8f6;border:1px solid #eed3cd;border-radius:8px}.removal-form p{font-size:13px;margin:0 0 12px}.removal-form .field{max-width:320px}.removal-actions{display:flex;gap:8px;align-items:center;margin-top:14px}.btn.danger{color:white;background:var(--red);border-color:var(--red)}.removal-actions .btn{font-size:12px;padding:8px 12px}.removal-note{display:block;font-size:11px;color:var(--muted);margin-top:10px}
+.correction-form-panel{background:white;padding:20px;border:1px solid var(--line);border-radius:10px}.correction-form-panel .form-help{margin:0 0 18px}.correction-form-panel .field,.removal-form .field{font-size:12px;color:#365247;font-weight:600}.field input,.field select,.field textarea{padding:11px 12px;border-color:#cddbd3;transition:border-color .15s,box-shadow .15s;font-weight:400}.field input:focus,.field select:focus,.field textarea:focus{outline:0;border-color:#4b8b6e;box-shadow:0 0 0 3px #e4f3eb}.field textarea{min-height:110px;resize:vertical}.form-actions{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:18px}.form-actions .form-help{margin:0;max-width:440px;font-size:11px}.form-actions .btn{flex:none}.correction-status:not(:empty){padding:12px 14px;border-radius:8px;background:#eaf5ee;color:#166a50;font-size:13px;border:1px solid #c8e3d1;margin-bottom:16px}.correction-status.error:not(:empty){background:#fff1ee;color:#a23745;border-color:#efd0ca}.history-empty{padding:16px 18px;border:1px dashed #cddbd3;border-radius:8px;font-size:13px;color:var(--muted);margin-bottom:20px}.history-empty strong{display:block;color:var(--ink);margin-bottom:4px}.correction-card:focus{outline:2px solid var(--blue);outline-offset:3px}
+@media(max-width:650px){.drawer header>div:first-child{flex-basis:100%;min-width:0}.drawer-actions{position:absolute;right:0;top:12px}.drawer header .eyebrow{padding-right:132px;min-height:32px}.drawer h2{margin-top:8px}.correction-body{padding:14px}.correction-card,.correction-form-panel{padding:15px}.correction-card-head{gap:8px}.history-date{font-size:11px}.correction-card-footer small{max-width:100%}.form-actions{align-items:stretch;flex-direction:column}.form-actions .btn{text-align:center}.removal-form{padding:12px}.section-count{display:block;margin:5px 0 0 17px}}
+</style></head><body>
+<div class="top"><div class="brand">◈ Flowline <span>MIGRATION WORKSPACE</span></div><span style="font-size:12px;color:#c2d9cd">Workflow frequency review</span></div>
+<main><div class="hero"><div><div class="eyebrow">Evidence before migration</div><h1>Review migration eligibility.</h1><div class="muted" id="subtitle"></div></div><div class="downloads"><a class="btn" href="step1_results.csv" download>↓ Python analysis CSV</a><a class="btn" href="step2_results.csv" download>↓ Reviewed results CSV</a></div></div>
+<div class="pipeline"><div class="step"><b>01 · Python analysis</b><small>Run history → observed cadence</small></div><span class="arrow">→</span><div class="step"><b>02 · Agent review</b><small>Analysis + feedback → explained outcome</small></div><span class="arrow">→</span><div class="step"><b>Review progress</b><small id="changed-label"></small></div><span class="runstate" id="runstate"></span></div>
+<div id="notice" class="notice hidden" role="status"></div><div class="stats" id="stats"></div>
+<section class="panel" aria-label="Workflow results"><div class="toolbar"><input type="search" id="search" aria-label="Search workflows" placeholder="Search by workflow, cadence or explanation…"><label><input id="changed" type="checkbox"> Changed from Python</label><button type="button" class="reset-filters hidden" id="reset-filters">Clear filters</button><select id="sort" aria-label="Sort workflows"><option value="flow">Workflow A–Z</option><option value="attention">Needs attention first</option><option value="runs">Most runs first</option></select></div><div class="tablewrap" tabindex="0" role="region" aria-label="Workflow results table"><table class="results-table"><thead><tr><th>Workflow / observation</th><th>Observed cadence</th><th>Current decision</th><th>Why this outcome</th></tr></thead><tbody id="rows"></tbody></table></div><div class="footer"><span id="count" role="status"></span><a href="manifest.json">Analysis run details ↗</a></div></section>
+<p class="muted" style="font-size:12px;margin-top:18px">Hourly or slower is eligible. Faster or unresolved schedules go to an engineer. Retirement requires confirmation. Click a workflow to inspect evidence and both explanations.</p></main>
+<div class="overlay hidden" id="overlay"><section class="drawer" role="dialog" aria-modal="true" aria-labelledby="detail-title" tabindex="-1"><header><div><div class="eyebrow">Workflow evidence</div><h2 id="detail-title"></h2></div><div class="drawer-actions"><span id="flow-position" class="flow-position"></span><button type="button" class="close" id="previous-flow" aria-label="Previous workflow in filtered results" title="Previous workflow">←</button><button type="button" class="close" id="next-flow" aria-label="Next workflow in filtered results" title="Next workflow">→</button><button type="button" class="close" id="close" aria-label="Close workflow details">×</button></div><nav class="detail-nav" aria-label="Workflow detail sections"><button type="button" data-jump="decision">Decision</button><button type="button" data-jump="runs">Runs</button><button type="button" data-jump="analysis">Compare analysis</button><button type="button" data-jump="correction-section">Corrections</button></nav></header><div id="details"></div><div id="run-tooltip" class="run-tooltip hidden" role="tooltip"></div></section></div>
+<script id="data" type="application/json">__PIPELINE_DATA__</script>
+<script>
+'use strict';
+const data=JSON.parse(document.getElementById('data').textContent),$=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const classes={'MIGRATE':'migrate','TO ENGINEER':'engineer','UNKNOWN':'unknown','DO NOT MIGRATE':'exclude'};
+const cadenceLabel=value=>!value||value.trim().toLowerCase()==='unknown'?'Cadence not determined':value;
+const badge=s=>`<span class="badge ${classes[s]||'unknown'}">${esc(s)}</span>`;
+const finalBadges=r=>`<div class="final-badges">${badge(r.final_outcome)}${r.decision_source==='human override'?'<span class="badge user-override" title="A user saved a correction to this workflow">User override</span>':''}</div>`;
+const statusClasses={Succeeded:'status-succeeded',Failed:'status-failed',Stopped:'status-stopped',Aborted:'status-aborted'};
+const statusBadge=s=>`<span class="badge ${statusClasses[s]||'status-other'}">${esc(s||'Unknown')}</span>`;
+function formatDuration(value,missing='Unknown'){
+  if(value===null||value===undefined||!Number.isFinite(Number(value)))return missing;
+  const seconds=Math.round(Math.abs(Number(value))*60),sign=Number(value)<0&&seconds>0?'-':'';
+  if(seconds>=86400){
+    const hours=Math.round(seconds/3600);
+    return `${sign}${Math.floor(hours/24)}d ${hours%24}h`;
+  }
+  if(seconds>=3600){
+    const minutes=Math.round(seconds/60);
+    if(minutes>=1440)return `${sign}1d 0h`;
+    return `${sign}${Math.floor(minutes/60)}h ${minutes%60}m`;
+  }
+  if(seconds>=60)return `${sign}${Math.floor(seconds/60)}m ${seconds%60}s`;
+  return `${sign}${seconds}s`;
+}
+
+function attemptsTable(attempts,cited=[]){return `<p class="attempt-note">In start-time order. Exec time = end − start. Gap = this start − previous end (negative means overlap). Gap and overlap use the previous run in the full history, even when filtered; missing or invalid timestamps show Unknown. The first attempt has no previous run (N/A).</p><div class="evidence" tabindex="0" role="region" aria-label="Scrollable run history"><table aria-label="Source attempts"><thead><tr><th>Row</th><th>Start</th><th>End</th><th>Status</th><th class="number">Exec time</th><th class="number">Gap time</th><th>Overlaps</th></tr></thead><tbody>${attempts.map(a=>`<tr class="${cited.includes(a.row)?'cited-row':''}"><td>${a.row}${cited.includes(a.row)?'<span class="cited-label">Cited</span>':''}</td><td class="timestamp">${esc(a.start_time||'—')}</td><td class="timestamp">${esc(a.end_time||'—')}</td><td>${statusBadge(a.status)}</td><td class="number">${formatDuration(a.exec_minutes)}</td><td class="number ${a.gap_minutes<0?'negative':''}" title="${a.previous_row===null?'No previous attempt':`Compared with source row ${a.previous_row}`}">${formatDuration(a.gap_minutes,a.overlaps_previous==='N/A'?'N/A':'Unknown')}</td><td><span class="badge ${a.overlaps_previous==='Yes'?'overlap-yes':a.overlaps_previous==='No'?'overlap-no':'status-other'}">${esc(a.overlaps_previous)}</span></td></tr>`).join('')||'<tr><td colspan="7" class="empty">No runs match this view.</td></tr>'}</tbody></table></div>`}
+
+const runClasses={Succeeded:'run-succeeded',Failed:'run-failed',Stopped:'run-stopped',Aborted:'run-aborted'};
+function activityChart(evidence){
+  const window=data.activity_window;
+  if(!window)return '<div class="section"><h3>Observed activity</h3><p>No valid start timestamps in this file.</p></div>';
+  const grouped=new Map();
+  for(const attempt of evidence.attempts){if(attempt.plot_date){if(!grouped.has(attempt.plot_date))grouped.set(attempt.plot_date,[]);grouped.get(attempt.plot_date).push(attempt)}}
+  const peak=Math.max(1,...[...grouped.values()].map(attempts=>attempts.length));
+  const first=Date.parse(window.start+'T00:00:00Z'),days=Array.from({length:window.days},(_,i)=>new Date(first+i*86400000).toISOString().slice(0,10));
+  const missing=evidence.attempts.filter(a=>!a.plot_date).length;
+  return `<div class="section"><h3>Observed activity</h3><div class="activity-legend">${Object.entries(runClasses).map(([status,cls])=>`<span class="activity-key"><i class="${cls}"></i>${esc(status)}</span>`).join('')}<span class="activity-key"><i class="run-other"></i>Other / unknown</span></div><div class="activity-chart" role="group" aria-label="Run activity from ${window.start} to ${window.end}">${days.map(day=>{const attempts=grouped.get(day)||[];return `<div class="activity-day ${attempts.length?'':'empty-day'}" data-date="${day}" aria-label="${day}: ${attempts.length} attempts">${attempts.map(a=>`<button type="button" class="run-mark ${runClasses[a.status]||'run-other'}" style="height:${Math.max(1,(142-(peak-1))/peak)}px" data-run-row="${a.row}" aria-label="Row ${a.row}, ${esc(a.status||'Unknown')}, start ${esc(a.start_time)}" aria-describedby="run-tooltip"></button>`).join('')}</div>`}).join('')}</div><div class="dates"><span>${window.start}</span><span>${window.end}</span></div><p class="activity-caption">Shared range: all ${window.days} calendar days in the CSV. Empty columns mean no recorded runs, not confirmed inactivity. Each colored segment is one run; hover, focus or tap for details. Peak: ${peak} attempts/day.${missing?` ${missing} attempts with invalid starts cannot be plotted.`:''}</p></div>`;
+}
+function hideRunTooltip(){$('run-tooltip').classList.add('hidden')}
+function showRunTooltip(event){
+  const button=event.target.closest('[data-run-row]');if(!button)return;
+  const run=data.evidence[selected].attempts.find(a=>String(a.row)===button.dataset.runRow);if(!run)return;
+  const tip=$('run-tooltip');
+  tip.innerHTML=`<div class="tooltip-title"><b>Source row ${run.row}</b>${statusBadge(run.status)}</div><dl><dt>Start</dt><dd>${esc(run.start_time)}</dd><dt>End</dt><dd>${esc(run.end_time||'Unknown')}</dd><dt>Exec time</dt><dd>${formatDuration(run.exec_minutes)}</dd><dt>Gap time</dt><dd>${formatDuration(run.gap_minutes,run.overlaps_previous==='N/A'?'N/A':'Unknown')}</dd><dt>Overlaps</dt><dd>${esc(run.overlaps_previous)}</dd></dl>`;
+  tip.classList.remove('hidden');const rect=button.getBoundingClientRect();
+  tip.style.left=Math.max(12,Math.min(rect.left,innerWidth-tip.offsetWidth-12))+'px';
+  tip.style.top=Math.max(12,rect.bottom+8+tip.offsetHeight>innerHeight?rect.top-tip.offsetHeight-8:rect.bottom+8)+'px';
+}
+$('details').addEventListener('pointerover',showRunTooltip);
+$('details').addEventListener('focusin',showRunTooltip);
+$('details').addEventListener('click',showRunTooltip);
+$('details').addEventListener('pointerout',event=>{if(event.target.closest('[data-run-row]'))hideRunTooltip()});
+$('details').addEventListener('focusout',event=>{if(event.target.closest('[data-run-row]'))hideRunTooltip()});
+document.querySelector('.drawer').addEventListener('scroll',hideRunTooltip);
+window.addEventListener('resize',hideRunTooltip);
+const drawer=document.querySelector('.drawer');
+new ResizeObserver(()=>{drawer.style.scrollPaddingTop=(drawer.querySelector('header').offsetHeight+16)+'px'}).observe(drawer.querySelector('header'));
+
+let selected='',priorFocus=null,activeOutcome='',visibleFlowIds=[],saving=false;
+const correctionDrafts=new Map();
+let reviewerName='';
+$('subtitle').textContent=`${data.results.length} workflows · Run ${data.manifest.run_id.slice(0,8)} · ${new Date(data.manifest.started_at).toLocaleString()}`;
+$('runstate').textContent=data.manifest.state==='complete'?'Review complete':`Review ${data.manifest.state}`;
+$('runstate').classList.toggle('incomplete',data.manifest.state!=='complete');
+
+if(data.manifest.state!=='complete'){$('notice').classList.remove('hidden');$('notice').textContent=data.manifest.error||'Review is still running. Refresh after the pipeline finishes. Automated outcomes are not finalized.'}
+function render(){
+$('changed-label').textContent=`${data.results.filter(r=>r.review_complete&&r.outcome_changed).length} changed · ${data.results.filter(r=>r.review_complete&&!r.outcome_changed).length} same · ${data.results.filter(r=>!r.review_complete).length} pending`;
+const query=$('search').value.trim().toLowerCase(),outcome=activeOutcome;const notes={'':'All workflows','MIGRATE':'Eligible cadence','TO ENGINEER':'Needs investigation','UNKNOWN':'Decision unresolved','DO NOT MIGRATE':'Confirmed exclusion'};$('stats').innerHTML=['',...data.outcomes].map(s=>`<button type="button" class="card ${outcome===s?'active':''}" data-filter="${esc(s)}" aria-pressed="${outcome===s}"><span class="label ${classes[s]||''}">${esc(s||'ALL')}</span><strong>${s?data.results.filter(r=>r.final_outcome===s).length:data.results.length}</strong><small>${notes[s]}</small></button>`).join('');
+let rows=data.results.filter(r=>(!outcome||r.final_outcome===outcome)&&(!$('changed').checked||r.outcome_changed)&&`${r.flow_id} ${r.effective_cadence} ${cadenceLabel(r.effective_cadence)} ${r.effective_explanation}`.toLowerCase().includes(query));
+const priority={'TO ENGINEER':0,'UNKNOWN':1,'DO NOT MIGRATE':2,'MIGRATE':3};rows.sort((a,b)=>$('sort').value==='runs'?b.total_rows-a.total_rows:$('sort').value==='attention'?priority[a.final_outcome]-priority[b.final_outcome]||a.flow_id.localeCompare(b.flow_id):a.flow_id.localeCompare(b.flow_id));
+visibleFlowIds=rows.map(r=>r.flow_id);
+$('reset-filters').classList.toggle('hidden',!query&&!outcome&&!$('changed').checked);
+$('rows').innerHTML=rows.map(r=>`<tr><td><button class="flowbtn" data-flow="${esc(r.flow_id)}">${esc(r.flow_id)}</button><small>${esc(r.observed_start.slice(0,10)||'No valid start')} → ${esc(r.observed_end.slice(0,10))}</small><small>${r.total_rows} attempts · ${r.observed_window_days} days observed</small></td><td data-label="Cadence">${esc(cadenceLabel(r.effective_cadence))}<small>${r.probable_retry_count?`Python: ${r.probable_retry_count} probable retries`:'Python: no retries grouped'}</small></td><td data-label="Current decision">${finalBadges(r)}<small>Step 1: ${esc(r.step1_outcome)}</small><div class="changed ${r.outcome_changed?'':'same'}">${!r.review_complete&&r.decision_source!=='human override'?'Review pending':r.outcome_changed?'↗ Outcome changed':'= Same outcome'}</div></td><td class="explanation" data-label="Reason">${esc(r.effective_explanation)}</td></tr>`).join('')||`<tr><td colspan="4" class="empty">${data.results.length?'No workflows match these filters.':'No workflow results available. Check the analysis status above.'}</td></tr>`;$('count').textContent=`Showing ${rows.length} of ${data.results.length} workflows`;
+}
+function cadenceEvidence(r){
+  if(!r.cadence_family)return '';
+  const names={'calendar':'Calendar schedule','interval':'Recurring interval','daily clock':'Daily time slots','weekly clock':'Weekly day and time slots','unresolved':'No supported pattern established'};
+  const alternatives=(r.matching_patterns||[]).filter(pattern=>pattern!==r.cadence);
+  return `<div class="section"><h3>Cadence detection</h3><p>${esc(names[r.cadence_family]||r.cadence_family)}</p>${alternatives.length?`<details><summary>${alternatives.length} other patterns fit the recorded starts</summary><p class="muted">The history supports more than one schedule definition. These are candidates, not confirmed scheduler settings.</p><ul>${alternatives.map(pattern=>`<li>${esc(pattern)}</li>`).join('')}</ul></details>`:''}</div>`;
+}
+function feedbackInput(r){
+  const ids=[...new Set(r.feedback_sections||[])];
+  if(!ids.length)return '';
+  return `<details class="feedback-input"><summary>Feedback considered · ${ids.length} ${ids.length===1?'section':'sections'}</summary>${ids.map(id=>{
+    const source=(data.feedback_sources||{})[String(id)];
+    return `<article><h4>${esc(source?.title||`Section ${id}`)}</h4><blockquote>${esc(source?.text||'Cited source text is unavailable in this snapshot.')}</blockquote></article>`;
+  }).join('')}<p class="muted">Cited by the automated reviewer alongside the run history.</p></details>`;
+}
+const decisionGuidance={
+  'MIGRATE':'Frequency is eligible: hourly or slower. Check the evidence before using this decision for migration planning.',
+  'TO ENGINEER':'Resolve the schedule or evidence issue before treating this workflow as frequency-eligible.',
+  'UNKNOWN':'Eligibility is unresolved. Complete the review or record an evidence-based correction.',
+  'DO NOT MIGRATE':'Excluded from migration. Check that the retirement or exclusion reason is still valid.'
+};
+function decisionSummary(r){
+  const override=r.decision_source==='human override';
+  return `<section class="decision-summary ${classes[r.final_outcome]||'unknown'}" id="decision" aria-label="Current decision">
+    <div class="decision-top">${finalBadges(r)}<span class="decision-source">${override?'Saved user correction':r.review_complete?'Agent-reviewed outcome':'Automated review incomplete'}</span></div>
+    <h2 class="decision-cadence">${esc(cadenceLabel(r.effective_cadence))}</h2>
+    <p class="decision-guide">${decisionGuidance[r.final_outcome]||decisionGuidance.UNKNOWN}</p>
+    <h3>Why this decision</h3><p>${esc(r.effective_explanation)}</p>
+    <div class="next-action"><h3>Next step</h3><p>${esc(override?'Use the saved correction and its reason for planning. Recheck the evidence if the schedule or scope has changed.':r.review_next_action)}</p></div>
+    ${feedbackInput(r)}
+  </section>`;
+}
+function renderRuns(){
+  const r=data.results.find(r=>r.flow_id===selected),all=data.evidence[selected]?.attempts||[];
+  const filter=$('run-filter').value;
+  const runs=all.filter(a=>filter==='all'||(filter==='unsuccessful'&&['Failed','Stopped','Aborted'].includes(a.status))||(filter==='overlap'&&a.overlaps_previous==='Yes')||(filter==='missing'&&!a.end_time)||(filter==='cited'&&r.review_evidence_rows.includes(a.row)));
+  $('run-count').textContent=`${runs.length} of ${all.length} runs`;
+  $('run-table').innerHTML=attemptsTable(runs,r.review_evidence_rows);
+}
+function updateFlowNavigation(){
+  const index=visibleFlowIds.indexOf(selected);
+  $('flow-position').textContent=index<0?'Outside current filters':`${index+1} of ${visibleFlowIds.length}`;
+  $('previous-flow').disabled=saving||index<=0;
+  $('next-flow').disabled=saving||index<0||index>=visibleFlowIds.length-1;
+}
+function navigateFlow(direction){
+  if(saving)return;
+  const index=visibleFlowIds.indexOf(selected),id=visibleFlowIds[index+direction];
+  if(index<0||!id)return;
+  openFlow(id,direction<0?'previous-flow':'next-flow');
+}
+function readableDate(value){
+  const date=new Date(value);
+  return Number.isNaN(date.getTime())?value:new Intl.DateTimeFormat(undefined,{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:false}).format(date);
+}
+function correctionHistory(r){
+  const history=r.override_history||[],active=history.filter(item=>!item.removed_at).at(-1);
+  if(!history.length)return '<div class="history-empty"><strong>No corrections yet</strong>The automated review is the current decision. Add a correction when the evidence supports a different outcome, cadence or reason.</div>';
+  return `<div class="correction-history" aria-label="Correction history">${[...history].reverse().map(item=>{
+    const current=item===active,removed=!!item.removed_at;
+    const initials=item.reviewer.trim().split(/\s+/).slice(0,2).map(part=>part[0]).join('').toUpperCase();
+    const prior=history.slice(0,history.indexOf(item)).filter(change=>!change.removed_at).at(-1);
+    const impact=current?`The current decision will return to ${prior?`the previous correction: ${prior.outcome}`:`the automated review: ${r.agent_outcome}`}.`:'The current decision will stay unchanged because a newer correction is active.';
+    return `<article class="correction-card ${current?'is-active':removed?'is-removed':''}" data-correction-card="${esc(item.id)}" aria-label="Correction by ${esc(item.reviewer)}, ${esc(readableDate(item.timestamp))}">
+      <div class="correction-card-head"><div class="badges">${badge(item.outcome)}<span class="history-state">${removed?'Removed':current?'Applied now':'Superseded'}</span></div><time class="history-date" datetime="${esc(item.timestamp)}" title="${esc(item.timestamp)}">${esc(readableDate(item.timestamp))}</time></div>
+      <div class="history-author"><span class="author-avatar" aria-hidden="true">${esc(initials)}</span><span>Saved by <b>${esc(item.reviewer)}</b></span></div>
+      <h4>${esc(cadenceLabel(item.cadence))}</h4><p class="correction-reason">${esc(item.reason)}</p>
+      <div class="correction-card-footer"><small>${removed?`Removed by ${esc(item.removed_by)} · ${esc(readableDate(item.removed_at))}`:current?'This correction determines the current decision.':'Kept in history; a newer correction takes precedence.'}</small>${removed?'':`<button type="button" class="remove-trigger" data-remove="${esc(item.id)}" aria-expanded="false">Remove correction</button>`}</div>
+      ${removed?'':`<form class="removal-form hidden" data-remove-form="${esc(item.id)}"><p><b>Remove this correction?</b> ${esc(impact)}</p><label class="field">Removed by<input name="reviewer" required autocomplete="name" placeholder="Your name" value="${esc(reviewerName)}"></label><span class="removal-note">The record stays in the history, marked as removed.</span><div class="removal-actions"><button type="submit" class="btn danger">Remove correction</button><button type="button" class="btn" data-cancel-remove>Cancel</button></div></form>`}
+    </article>`;
+  }).join('')}</div>`;
+}
+function openFlow(id,focusId='close'){
+  selected=id;
+  if($('overlay').classList.contains('hidden'))priorFocus=document.activeElement;
+  const r=data.results.find(r=>r.flow_id===id),e=data.evidence[id]||{attempts:[],daily_counts:{}};
+  $('detail-title').textContent=id;hideRunTooltip();
+  $('details').innerHTML=`${decisionSummary(r)}
+    <div class="observation-summary"><span><b>${e.attempts.length}</b> recorded runs</span><span><b>${esc(r.observed_start.slice(0,10)||'No valid start')} – ${esc(r.observed_end.slice(0,10)||'—')}</b> observed</span><span><b>${r.probable_retry_count}</b> probable retries grouped by Python</span></div>
+    ${activityChart(e)}
+    <section class="section" id="runs" aria-labelledby="runs-title"><div class="section-heading"><h3 id="runs-title">Run history <span class="muted" style="margin-left:8px;font-weight:400" id="run-count" role="status"></span></h3><label>Show <select id="run-filter" aria-label="Filter runs"><option value="all">All runs</option><option value="unsuccessful">Failed, stopped or aborted</option><option value="overlap">Overlapping runs</option><option value="missing">Missing end time</option><option value="cited">Cited in review</option></select></label></div><div id="run-table"></div></section>
+    <details class="section analysis-section" id="analysis"><summary>Compare Python and agent analysis</summary><div class="detailgrid"><div class="detailbox"><h3>Step 1 · Python</h3>${badge(r.step1_outcome)}<p><b>${esc(cadenceLabel(r.cadence))}</b></p><p>${esc(r.step1_explanation)}</p></div><div class="detailbox"><h3>Step 2 · Agent ${r.review_complete?'':'(incomplete)'}</h3>${badge(r.agent_outcome)}<p><b>${esc(cadenceLabel(r.final_cadence))}</b></p><p>${esc(r.outcome_explanation)}</p></div></div>
+    <div class="section"><h3>${!r.review_complete?'Comparison pending':r.agent_outcome_changed?'Why the automated decision changed':'Why the automated decision stayed the same'}</h3><p>${esc(r.comparison_explanation)}</p></div>${cadenceEvidence(r)}
+    <div class="section"><h3>Data quality and observation limits</h3>${r.data_quality_flags.map(f=>`<span class="flag">${esc(f.replaceAll('_',' '))}</span>`).join('')||'<p class="muted">No flags from Python analysis.</p>'}<p class="muted">${r.inactive_days} days since the last observed start at export end. ${r.missing_end_times} missing end times; a missing end does not invalidate a start.</p><p class="muted">Failures and gaps alone do not determine migration eligibility.</p></div></details>
+    <details class="section correction-section" id="correction-section"><summary>Corrections &amp; history <span class="section-count">${r.override_history.length?`${r.override_history.length} ${r.override_history.length===1?'record':'records'} · ${r.decision_source==='human override'?'User correction applied':'Automated decision active'}`:'No corrections'}</span></summary>
+    <div class="correction-body"><div id="save-message" class="correction-status" role="status"></div>${correctionHistory(r)}
+    <div class="correction-form-panel"><h3>Add a correction</h3><p class="form-help">Update the decision using the evidence you reviewed. Your name and reason will be saved with it.</p>
+    <form id="correction"><div class="formgrid"><label class="field">Outcome<select name="outcome">${data.outcomes.map(o=>`<option ${o===r.final_outcome?'selected':''}>${esc(o)}</option>`).join('')}</select></label><label class="field">Cadence<input name="cadence" value="${esc(r.effective_cadence)}" required></label><label class="field full">Your name<input name="reviewer" autocomplete="name" value="${esc(reviewerName)}" required></label><label class="field full">Reason for this correction<textarea name="reason" required placeholder="Describe the evidence and why the decision should change…" aria-describedby="correction-help"></textarea></label></div><div class="form-actions"><p id="correction-help" class="form-help">Excluding a workflow requires an explicit retirement or exclusion reason. Saving updates this review only.</p><button class="btn primary" id="save-correction" type="submit">Save correction</button></div></form></div></div></details>`;
+  renderRuns();
+  $('run-filter').addEventListener('change',renderRuns);
+  $('overlay').classList.remove('hidden');
+  document.querySelector('main').inert=true;document.querySelector('.top').inert=true;
+  document.body.style.overflow='hidden';updateFlowNavigation();document.querySelector('.drawer').scrollTop=0;
+  ($(focusId).disabled?$('close'):$(focusId)).focus();
+  const form=$('correction'),draft=correctionDrafts.get(id);
+  if(draft){for(const [name,value] of Object.entries(draft))form.elements[name].value=value;$('correction-section').open=true}
+  form.addEventListener('input',()=>correctionDrafts.set(id,Object.fromEntries(new FormData(form))));
+  form.addEventListener('submit',saveCorrection);
+  $('correction-section').addEventListener('click',handleCorrectionClick);
+  $('correction-section').querySelectorAll('[data-remove-form]').forEach(form=>form.addEventListener('submit',removeCorrection));
+  if(location.protocol==='file:')$('save-message').textContent='To save, run python3 pipeline.py serve and open http://127.0.0.1:8765.';
+}
+function handleCorrectionClick(event){
+  if(saving)return;
+  const remove=event.target.closest('[data-remove]'),cancel=event.target.closest('[data-cancel-remove]');
+  if(remove){
+    const card=remove.closest('.correction-card'),form=card.querySelector('[data-remove-form]');
+    form.classList.remove('hidden');remove.setAttribute('aria-expanded','true');
+    form.elements.reviewer.value=$('correction').elements.reviewer.value||reviewerName;
+    form.elements.reviewer.focus();
+  }
+  if(cancel){const card=cancel.closest('.correction-card');card.querySelector('[data-remove-form]').classList.add('hidden');const trigger=card.querySelector('[data-remove]');trigger.setAttribute('aria-expanded','false');trigger.focus()}
+}
+function saveCorrection(event){event.preventDefault();return updateCorrection('save',Object.fromEntries(new FormData(event.target)))}
+function removeCorrection(event){event.preventDefault();return updateCorrection('remove',{correction_id:event.target.dataset.removeForm,reviewer:event.target.elements.reviewer.value})}
+function setCorrectionBusy(busy){
+  saving=busy;$('correction-section').setAttribute('aria-busy',String(busy));
+  $('correction-section').querySelectorAll('input,select,textarea,button').forEach(field=>field.disabled=busy);
+  $('close').disabled=busy;updateFlowNavigation();
+}
+async function updateCorrection(action,fields){
+  if(saving)return;
+  let message=$('save-message');message.classList.remove('error');
+  if(location.protocol==='file:'){message.textContent='To change corrections, run python3 pipeline.py serve and open http://127.0.0.1:8765.';return}
+  const id=selected,removing=action==='remove';
+  setCorrectionBusy(true);message.textContent=removing?'Removing correction…':'Saving correction…';
+  let committed=false;
+  try{
+    const response=await fetch(removing?'/api/override/remove':'/api/override',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({flow_id:id,...fields})});
+    const answer=await response.json();if(!response.ok)throw new Error(answer.error||'Request failed');
+    committed=true;reviewerName=fields.reviewer.trim();if(!removing)correctionDrafts.delete(id);
+    const refreshed=await fetch('results.json',{cache:'no-store'});if(!refreshed.ok)throw new Error('Unable to refresh results');
+    data.results=await refreshed.json();render();
+    setCorrectionBusy(false);openFlow(id);$('correction-section').open=true;message=$('save-message');
+    const current=data.results.find(row=>row.flow_id===id);
+    message.textContent=removing?`Correction removed. ${current.decision_source==='human override'?'The latest remaining correction is now applied.':'The automated review is now active.'}`:'Correction saved. The current decision and results have been updated.';
+    jumpToSection('correction-section');
+  }catch(error){message.classList.add('error');message.textContent=committed?`Correction ${removing?'removed':'saved'}, but the display could not refresh. Reload the page to see the updated decision.`:`Could not ${removing?'remove':'save'}: ${error.message}`;message.scrollIntoView({block:'nearest'})}
+  finally{setCorrectionBusy(false);if(committed&&message.classList.contains('error'))$('correction-section').querySelectorAll('button').forEach(button=>button.disabled=true)}
+}
+function jumpToSection(id){const section=$(id);if(section.tagName==='DETAILS')section.open=true;section.scrollIntoView({block:'start'});section.tabIndex=-1;section.focus({preventScroll:true})}
+document.querySelector('.detail-nav').addEventListener('click',event=>{const button=event.target.closest('[data-jump]');if(button)jumpToSection(button.dataset.jump)});
+$('reset-filters').addEventListener('click',()=>{activeOutcome='';$('search').value='';$('changed').checked=false;render();$('search').focus()});
+function closeFlow(){if(saving)return;hideRunTooltip();document.querySelector('main').inert=false;document.querySelector('.top').inert=false;$('overlay').classList.add('hidden');document.body.style.overflow='';(priorFocus?.isConnected?priorFocus:$('search')).focus()}
+$('previous-flow').addEventListener('click',()=>navigateFlow(-1));$('next-flow').addEventListener('click',()=>navigateFlow(1));$('close').addEventListener('click',closeFlow);$('overlay').addEventListener('click',e=>{if(e.target===$('overlay'))closeFlow()});document.addEventListener('keydown',e=>{if($('overlay').classList.contains('hidden'))return;if(e.key==='Escape')closeFlow();if(e.key==='Tab'){const nodes=[...$('overlay').querySelectorAll('button,input,select,textarea,a,summary,[tabindex="0"]')].filter(n=>!n.disabled&&n.getClientRects().length);if(e.shiftKey&&(document.activeElement===nodes[0]||!nodes.includes(document.activeElement))){e.preventDefault();nodes.at(-1).focus()}else if(!e.shiftKey&&(document.activeElement===nodes.at(-1)||!nodes.includes(document.activeElement))){e.preventDefault();nodes[0].focus()}}});$('rows').addEventListener('click',e=>{const b=e.target.closest('[data-flow]');if(b)openFlow(b.dataset.flow)});$('stats').addEventListener('click',e=>{const b=e.target.closest('[data-filter]');if(b){activeOutcome=b.dataset.filter;render();[...$('stats').querySelectorAll('[data-filter]')].find(card=>card.dataset.filter===activeOutcome)?.focus()}});['search','changed','sort'].forEach(id=>$(id).addEventListener('input',render));render();
+</script></body></html>

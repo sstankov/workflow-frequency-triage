@@ -1,0 +1,32 @@
+{
+  "run_id": "d7fc7c86-a57d-4ad6-a608-11074a2f2d2a",
+  "started_at": "2026-10-21T13:54:11.975164+00:00",
+  "state": "complete",
+  "rule_version": "3.1",
+  "prompt_version": "3.1",
+  "agent": "Codex CLI configured default",
+  "timezone": "source timestamps unspecified; run timestamps UTC",
+  "log_file": "logs/2026-10-21-pipeline-d7fc7c86-a57d-4ad6-a608-11074a2f2d2a.md",
+  "input_sha256": {
+    "_data/run_history.csv": "2fc577dc51570868901692b8cbb181b03ee4b928c8903da2563849e20ddd5f15",
+    "_data/feedback.md": "6cc39bce4aa1ee9e460ed4c5ee5fddeb66b8cac6eb8d9d69706cc60bd3eea4d9",
+    "prompts/review.txt": "a69abbd9f3d5a4fbab0ab969080a7ae6f87d4e53b717265959257d661191844b"
+  },
+  "workflow_count": 40,
+  "source_row_count": 1152,
+  "outcomes": {
+    "MIGRATE": 30,
+    "TO ENGINEER": 10
+  },
+  "changed_count": 7,
+  "agent_usage": {
+    "input_tokens": 141476,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 9255,
+    "reasoning_output_tokens": 516
+  },
+  "finished_at": "2026-10-21T13:58:10.927731+00:00",
+  "duration_seconds": 238.95,
+  "error": ""
+}
