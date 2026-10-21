@@ -1,3 +1,6 @@
+Video explanation: https://www.loom.com/share/c6fac1df7aff411899b8d261c3fdb493
+
+
 # Workflow frequency triage
 
 A local prototype for the [assignment](_data/assignment.md): review incomplete ETL run history, identify workflows eligible for migration, and let a human correct the result. **Hourly or less frequent schedules qualify; faster or unresolved schedules go to an engineer.** This tool assesses frequency eligibility; it does not execute migrations.
