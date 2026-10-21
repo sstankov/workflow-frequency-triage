@@ -429,11 +429,20 @@
       1
     ],
     "review_next_action": "Ask an engineer: What triggers these runs, were rows 568 and 569 retries of row 567, and what is the fastest configured recurring cadence?",
-    "override_history": [],
-    "final_outcome": "TO ENGINEER",
-    "effective_explanation": "Nine attempts across 76.196 days do not establish a recurring schedule. The August 19 failure, failure and success sequence has 18.367- and 24.05-minute gaps consistent with retries, but grouping it still leaves irregular dates and times.",
+    "override_history": [
+      {
+        "id": "23b8d105-fe85-4aa7-96f4-aeb0333f0746",
+        "timestamp": "2026-10-21T14:37:18.442643+00:00",
+        "outcome": "DO NOT MIGRATE",
+        "cadence": "Unknown; irregular starts with a probable retry cluster",
+        "reason": "this should be not migrated.",
+        "reviewer": "Slav"
+      }
+    ],
+    "final_outcome": "DO NOT MIGRATE",
+    "effective_explanation": "Reviewer Slav: this should be not migrated.",
     "effective_cadence": "Unknown; irregular starts with a probable retry cluster",
-    "decision_source": "agent",
+    "decision_source": "human override",
     "outcome_changed": true
   },
   {
@@ -2119,11 +2128,20 @@
       4
     ],
     "review_next_action": "Ask an engineer: Was this workflow paused, rescheduled, retired or omitted from the export after August 17, and what is its current schedule? Obtain explicit owner authorization before excluding it.",
-    "override_history": [],
-    "final_outcome": "TO ENGINEER",
-    "effective_explanation": "50 daily occurrences plus one probable retry are observed from June 29 through August 17. The subsequent 40.722-day gap to export_end leaves current operation and history coverage unresolved. Feedback expresses a retirement preference, not authorized exclusion.",
+    "override_history": [
+      {
+        "id": "bfb57f58-e110-4bcf-8877-127ebd653095",
+        "timestamp": "2026-10-21T14:39:21.791767+00:00",
+        "outcome": "DO NOT MIGRATE",
+        "cadence": "Historically daily at approximately 06:30; current schedule unresolved",
+        "reason": "Because we no longer need it",
+        "reviewer": "Slav"
+      }
+    ],
+    "final_outcome": "DO NOT MIGRATE",
+    "effective_explanation": "Reviewer Slav: Because we no longer need it",
     "effective_cadence": "Historically daily at approximately 06:30; current schedule unresolved",
-    "decision_source": "agent",
+    "decision_source": "human override",
     "outcome_changed": true
   },
   {
